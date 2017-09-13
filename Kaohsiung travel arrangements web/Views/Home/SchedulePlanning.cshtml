@@ -1,0 +1,105 @@
+﻿
+@section HEAD{
+    <title>安排行程</title>
+    <link rel="stylesheet" href="~/Content/plan_style.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/semantic.min.css">
+    <link rel="stylesheet" href="~/Content/pikaday.css">
+    <link rel="stylesheet" href="~/Content/site.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/semantic.min.js"></script>
+    <!-- 依需要參考已編譯外掛版本（如下），或各自獨立的外掛版本 -->
+    <script src="~/Scripts/pikaday.js"></script>   
+}
+<div class="planning">
+    <div class="container" style="width:100%">
+        <div class="row text-center">
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                <img src="~/Image/number.png" alt="" style="height:600px;margin-left:100px">
+            </div>
+            <form class="" action="index.html" method="post">
+
+                <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                    <div class="container" style=";height:150px;">
+                        <h4>輸入旅遊日期</h4>
+                        <input type="text" id="start-datepicker" style="height:45px;border-radius:5px;border: 1px solid #ccc;">
+                        <input type="text" id="end-datepicker" style="margin-left:50px;height:45px;border-radius:5px;border: 1px solid #ccc;">
+                    </div>
+                    <div class="ui container" style="height:150px;margin-top:30px;">
+                        <h4>選擇旅遊地點</h4>
+                        <select id="gender-select" name="gender" class="ui selection dropdown">
+                            <i class="dropdown icon"></i>
+                            <option value="台北">台北</option>
+                            <option value="高雄">高雄</option>
+                            <option value="台南">台南</option>
+                            <option value="台中">台中</option>
+                            <option value="桃園">桃園</option>
+                            <option value="宜蘭">宜蘭</option>
+                            <option value="新竹">新竹</option>
+                            <option value="嘉義">嘉義</option>
+                            <option value="彰化">彰化</option>
+                            <option value="基隆">基隆</option>
+                            <option value="花蓮">花蓮</option>
+                            <option value="南投">南投</option>
+                            <option value="苗栗">苗栗</option>
+                            <option value="屏東">屏東</option>
+                            <option value="台東">台東</option>
+                            <option value="雲林">雲林</option>
+                        </select>
+                    </div>
+                    <div class="ui container" style="height:150px;margin-top:10px;width:80%;">
+                        <h4 style="height:20px">景點興趣分數</h4>
+                        <span style="color:rgb(164,164,164);">1-10分，10分為最高</span>
+                        <div class="row text-center score" style="margin-top:10px;">
+                            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                <span>休閒</span>
+                                <input type="number" name="" value="" min="1" max="10">
+                            </div>
+                            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                <span>娛樂</span>
+                                <input type="number" name="" value="" min="1" max="10">
+                            </div>
+                            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                <span>自然</span>
+                                <input type="number" name="" value="" min="1" max="10">
+                            </div>
+                            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                <span>文化</span>
+                                <input type="number" name="" value="" min="1" max="10">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui container" style="height:150px;margin-top:10px;width:30%;">
+                        <div class="row text-center" style="margin-top:10%;">
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <button type="submit" class="btn btn-default" style="border-radius:5px;border: 1px solid #ccc;width:100px;height:45px" onclick="">確認</button>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <button type="reset" class="btn btn-default" style="border-radius:5px;border: 1px solid #ccc;width:100px;height:45px" onclick="">重設</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+        
+<script>
+    var picker = new Pikaday(
+    {
+        field: document.getElementById('start-datepicker'),
+        firstDay: 1,
+        minDate: new Date(1995, 12, 31),
+        maxDate: new Date(),
+        yearRange: [2000,2020]
+    });
+
+    var picker = new Pikaday(
+    {
+        field: document.getElementById('end-datepicker'),
+        firstDay: 1,
+        minDate: new Date(1995, 12, 31),
+        maxDate: new Date(),
+        yearRange: [2000,2020]
+    });
+</script>
