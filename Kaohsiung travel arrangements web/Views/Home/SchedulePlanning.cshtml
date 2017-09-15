@@ -9,6 +9,19 @@
     <!-- 依需要參考已編譯外掛版本（如下），或各自獨立的外掛版本 -->
     <script src="~/Scripts/pikaday.js"></script>   
 }
+
+<script>
+    $.ajax({
+        url: '/Home/AttractionsInfo',
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+            console.log(data)
+        }
+    })
+</script>
+
+
 <div class="planning">
     <div class="container" style="width:100%">
         <div class="row text-center">

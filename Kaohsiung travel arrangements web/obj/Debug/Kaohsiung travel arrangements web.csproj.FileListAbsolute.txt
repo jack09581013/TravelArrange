@@ -52,3 +52,57 @@ c:\users\user\documents\visual studio 2015\Projects\Kaohsiung travel arrangement
 c:\users\user\documents\visual studio 2015\Projects\Kaohsiung travel arrangements web\Kaohsiung travel arrangements web\obj\Debug\Kaohsiung travel arrangements web.pdb
 C:\Users\USER\documents\visual studio 2015\Projects\Kaohsiung travel arrangements web\Kaohsiung travel arrangements web\bin\Newtonsoft.Json.dll
 C:\Users\USER\documents\visual studio 2015\Projects\Kaohsiung travel arrangements web\Kaohsiung travel arrangements web\bin\Newtonsoft.Json.xml
+C:\Users\USER\Documents\Visual Studio 2015\Projects\TravelArrange\Kaohsiung travel arrangements web\bin\ApplicationInsights.config
+C:\Users\USER\Documents\Visual Studio 2015\Projects\TravelArrange\Kaohsiung travel arrangements web\bin\roslyn\csc.exe
+C:\Users\USER\Documents\Visual Studio 2015\Projects\TravelArrange\Kaohsiung travel arrangements web\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\USER\Documents\Visual Studio 2015\Projects\TravelArrange\Kaohsiung travel arrangements web\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\USER\Documents\Visual Studio 2015\Projects\TravelArrange\Kaohsiung travel arrangements web\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\USER\Documents\Visual Studio 2015\Projects\TravelArrange\Kaohsiung travel arrangements web\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\USER\Documents\Visual Studio 2015\Projects\TravelArrange\Kaohsiung travel arrangements web\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\USER\Documents\Visual Studio 2015\Projects\TravelArrange\Kaohsiung travel arrangements web\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\USER\Documents\Visual Studio 2015\Projects\TravelArrange\Kaohsiung travel arrangements web\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\USER\Documents\Visual Studio 2015\Projects\TravelArrange\Kaohsiung travel arrangements web\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\USER\Documents\Visual Studio 2015\Projects\TravelArrange\Kaohsiung travel arrangements web\bin\roslyn\vbc.exe
+C:\Users\USER\Documents\Visual Studio 2015\Projects\TravelArrange\Kaohsiung travel arrangements web\bin\roslyn\VBCSCompiler.exe
+C:\Users\USER\Documents\Visual Studio 2015\Projects\TravelArrange\Kaohsiung travel arrangements web\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\USER\Documents\Visual Studio 2015\Projects\TravelArrange\Kaohsiung travel arrangements web\bin\Kaohsiung travel arrangements web.dll.config
+C:\Users\USER\Documents\Visual Studio 2015\Projects\TravelArrange\Kaohsiung travel arrangements web\bin\Kaohsiung travel arrangements web.dll
+C:\Users\USER\Documents\Visual Studio 2015\Projects\TravelArrange\Kaohsiung travel arrangements web\bin\Kaohsiung travel arrangements web.pdb
+C:\Users\USER\Documents\Visual Studio 2015\Projects\TravelArrange\Kaohsiung travel arrangements web\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\USER\Documents\Visual Studio 2015\Projects\TravelArrange\Kaohsiung travel arrangements web\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\USER\Documents\Visual Studio 2015\Projects\TravelArrange\Kaohsiung travel arrangements web\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\USER\Documents\Visual Studio 2015\Projects\TravelArrange\Kaohsiung travel arrangements web\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\USER\Documents\Visual Studio 2015\Projects\TravelArrange\Kaohsiung travel arrangements web\bin\Microsoft.AI.Web.dll
+C:\Users\USER\Documents\Visual Studio 2015\Projects\TravelArrange\Kaohsiung travel arrangements web\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\USER\Documents\Visual Studio 2015\Projects\TravelArrange\Kaohsiung travel arrangements web\bin\Microsoft.ApplicationInsights.dll
+C:\Users\USER\Documents\Visual Studio 2015\Projects\TravelArrange\Kaohsiung travel arrangements web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\USER\Documents\Visual Studio 2015\Projects\TravelArrange\Kaohsiung travel arrangements web\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\USER\Documents\Visual Studio 2015\Projects\TravelArrange\Kaohsiung travel arrangements web\bin\Newtonsoft.Json.dll
+C:\Users\USER\Documents\Visual Studio 2015\Projects\TravelArrange\Kaohsiung travel arrangements web\bin\System.Web.Helpers.dll
+C:\Users\USER\Documents\Visual Studio 2015\Projects\TravelArrange\Kaohsiung travel arrangements web\bin\System.Web.Mvc.dll
+C:\Users\USER\Documents\Visual Studio 2015\Projects\TravelArrange\Kaohsiung travel arrangements web\bin\System.Web.Razor.dll
+C:\Users\USER\Documents\Visual Studio 2015\Projects\TravelArrange\Kaohsiung travel arrangements web\bin\System.Web.Webpages.Deployment.dll
+C:\Users\USER\Documents\Visual Studio 2015\Projects\TravelArrange\Kaohsiung travel arrangements web\bin\System.Web.Webpages.dll
+C:\Users\USER\Documents\Visual Studio 2015\Projects\TravelArrange\Kaohsiung travel arrangements web\bin\System.Web.Webpages.Razor.dll
+C:\Users\USER\Documents\Visual Studio 2015\Projects\TravelArrange\Kaohsiung travel arrangements web\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\USER\Documents\Visual Studio 2015\Projects\TravelArrange\Kaohsiung travel arrangements web\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Users\USER\Documents\Visual Studio 2015\Projects\TravelArrange\Kaohsiung travel arrangements web\bin\Microsoft.AI.Web.xml
+C:\Users\USER\Documents\Visual Studio 2015\Projects\TravelArrange\Kaohsiung travel arrangements web\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\USER\Documents\Visual Studio 2015\Projects\TravelArrange\Kaohsiung travel arrangements web\bin\Microsoft.ApplicationInsights.xml
+C:\Users\USER\Documents\Visual Studio 2015\Projects\TravelArrange\Kaohsiung travel arrangements web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\USER\Documents\Visual Studio 2015\Projects\TravelArrange\Kaohsiung travel arrangements web\bin\Newtonsoft.Json.xml
+C:\Users\USER\Documents\Visual Studio 2015\Projects\TravelArrange\Kaohsiung travel arrangements web\bin\System.Web.Razor.xml
+C:\Users\USER\Documents\Visual Studio 2015\Projects\TravelArrange\Kaohsiung travel arrangements web\bin\System.Web.Webpages.xml
+C:\Users\USER\Documents\Visual Studio 2015\Projects\TravelArrange\Kaohsiung travel arrangements web\bin\System.Web.Webpages.Deployment.xml
+C:\Users\USER\Documents\Visual Studio 2015\Projects\TravelArrange\Kaohsiung travel arrangements web\bin\System.Web.Webpages.Razor.xml
+C:\Users\USER\Documents\Visual Studio 2015\Projects\TravelArrange\Kaohsiung travel arrangements web\bin\System.Web.Helpers.xml
+C:\Users\USER\Documents\Visual Studio 2015\Projects\TravelArrange\Kaohsiung travel arrangements web\bin\System.Web.Mvc.xml
+C:\Users\USER\Documents\Visual Studio 2015\Projects\TravelArrange\Kaohsiung travel arrangements web\bin\zh-Hant\System.Web.Razor.resources.dll
+C:\Users\USER\Documents\Visual Studio 2015\Projects\TravelArrange\Kaohsiung travel arrangements web\bin\zh-Hant\System.Web.Webpages.resources.dll
+C:\Users\USER\Documents\Visual Studio 2015\Projects\TravelArrange\Kaohsiung travel arrangements web\bin\zh-Hant\System.Web.Webpages.Deployment.resources.dll
+C:\Users\USER\Documents\Visual Studio 2015\Projects\TravelArrange\Kaohsiung travel arrangements web\bin\zh-Hant\System.Web.Webpages.Razor.resources.dll
+C:\Users\USER\Documents\Visual Studio 2015\Projects\TravelArrange\Kaohsiung travel arrangements web\bin\zh-Hant\System.Web.Helpers.resources.dll
+C:\Users\USER\Documents\Visual Studio 2015\Projects\TravelArrange\Kaohsiung travel arrangements web\bin\zh-Hant\System.Web.Mvc.resources.dll
+C:\Users\USER\Documents\Visual Studio 2015\Projects\TravelArrange\Kaohsiung travel arrangements web\obj\Debug\Kaohsiung travel arrangements web.csprojResolveAssemblyReference.cache
+C:\Users\USER\Documents\Visual Studio 2015\Projects\TravelArrange\Kaohsiung travel arrangements web\obj\Debug\Kaohsiung travel arrangements web.dll
+C:\Users\USER\Documents\Visual Studio 2015\Projects\TravelArrange\Kaohsiung travel arrangements web\obj\Debug\Kaohsiung travel arrangements web.pdb
