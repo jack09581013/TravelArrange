@@ -206,6 +206,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Image\scencey.sketch" />
     <Content Include="App_Data\attractions-all-information.csv" />
+    <Content Include="App_Data\attractions-opentime.json" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

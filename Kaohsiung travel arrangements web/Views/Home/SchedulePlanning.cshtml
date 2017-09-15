@@ -11,9 +11,25 @@
 }
 
 <script>
+    //拿取所有景點資料，用在<景點介紹>頁面
     $.ajax({
         url: '/Home/AttractionsInfo',
         type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+            console.log(data)
+        }
+    })
+
+    //輸入旅遊時段，得出開放時間匹配此時段的景點，用在<顯示安排結果>頁面
+    $.ajax({
+        url: '/Home/AttractionReplacement',
+        data: {
+            week: 3,
+            startTime: '08:00',
+            endTime: '12:00'
+        },
+        type: 'POST',
         dataType: 'json',
         success: function (data) {
             console.log(data)
