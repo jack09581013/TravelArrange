@@ -22,6 +22,11 @@ namespace Kaohsiung_travel_arrangements_web.Controllers
             return View();
         }
 
+        public ActionResult AttractionIntroduction()
+        {
+            return View();
+        }
+
         public string AttractionsInfo()
         {
             List<string[]> data = new List<string[]>();

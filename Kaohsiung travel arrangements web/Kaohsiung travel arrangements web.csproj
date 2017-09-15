@@ -127,6 +127,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\pikaday.css" />
     <Content Include="Content\plan_style.css" />
+    <Content Include="Content\RestaurantStyle.css" />
     <Content Include="Content\schedule_style.css" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -240,6 +241,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Home\ScheduleResult.cshtml" />
+    <Content Include="Views\Home\AttractionIntroduction.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
