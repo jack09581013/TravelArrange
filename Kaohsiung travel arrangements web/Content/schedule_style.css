@@ -62,11 +62,12 @@ body {
 }
 
 .header {
-  margin-top: -30px;
+  z-index: -1;
   width: 100%;
   height: 500px;
   /*background-position: center;*/
-  background-image: url("../Image/h.png");
+  background-image: url("/Image/h2.png");
+  margin-top: -100px;
   position: absolute;
   background-repeat: no-repeat;
   overflow: hidden;
@@ -87,6 +88,50 @@ body {
   margin: auto;
   width: 100%;
   border: 1px solid #424242;
+}
+
+.schedule-detail .schedule-list{
+    height:calc(100% - 30px);
+    width:100%;
+}
+
+.schedule-detail .dropdown *{
+    margin-top:14px;
+    font-size:28px;
+}
+
+.schedule-detail .row{
+    margin:14px 0 14px 0;
+}
+
+.schedule-detail .row > .col{
+    margin:14px 0 14px 0;
+}
+
+.schedule-detail .time-circle{
+    width:50px;
+    height:50px;
+    display:inline-block;
+    border-radius:100%;
+    border:4px solid #34495E;
+    background-color:#FAF6C2;
+    line-height:45px;
+    color:#34495E;
+    margin:0;
+}
+
+.schedule-detail .time-circle-middle{
+    width:50px;
+    height:50px;
+    display:inline-block;
+    font-size:50px;
+    line-height:50px;
+}
+
+.schedule-detail .place-btn{
+    font-weight:bold;
+    line-height:50px;
+    margin-left:-110px;
 }
 
 #map {

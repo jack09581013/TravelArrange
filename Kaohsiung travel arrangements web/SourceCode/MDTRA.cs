@@ -4,10 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 
 class MDTRA
-{    
+{
     public MDTRA(Attraction[] attr, TravelTime[][] tt)
     {
         this.attr = attr;
@@ -130,23 +129,31 @@ class MDTRA
             }
             else if (cal.attribute == "part")
             {
-                foreach(string[] opentimes in cal.calendar[chooseTime.week])
+                foreach (string[] opentimes in cal.calendar[chooseTime.week])
                 {
-                    if(string.Compare(opentimes[0], chooseTime.endTime) < 0 &&
+                    if (string.Compare(opentimes[0], chooseTime.endTime) < 0 &&
                         string.Compare(chooseTime.startTime, opentimes[1]) < 0)
                     {
                         string maxStart = string.Compare(opentimes[0], chooseTime.startTime) < 0 ? chooseTime.startTime : opentimes[0];
                         string minEnd = string.Compare(opentimes[1], chooseTime.endTime) < 0 ? opentimes[1] : chooseTime.endTime;
 
-                        _priority[i] = -1;
-                        if (i != 0 && _priority[i - 1] != -1) _priority[i - 1] += 1;
-                        if (i != _priority.Length - 1 && _priority[i + 1] != -1) _priority[i + 1] += 1;
+                        DateTime maxStartTime = DateTime.Parse("2000-1-1 " + maxStart + ":00");
+                        DateTime minEndTime = DateTime.Parse("2000-1-1 " + minEnd + ":00");
+                        TimeSpan span = minEndTime - maxStartTime;
+                        TimeSpan threshold = new TimeSpan(1, 0, 0);
+                        TimeSpan standard = new TimeSpan(0, 0, 0);
+                        if (span - threshold >= standard)
+                        {
+                            _priority[i] = -1;
+                            if (i != 0 && _priority[i - 1] != -1) _priority[i - 1] += 1;
+                            if (i != _priority.Length - 1 && _priority[i + 1] != -1) _priority[i + 1] += 1;
 
-                        _arr[i] = new Arrangement();
-                        _arr[i].startTime = chooseTime.startTime;
-                        _arr[i].endTime = chooseTime.endTime;
-                        _arr[i].attr = attr[top];
-                        hasArrange = true;
+                            _arr[i] = new Arrangement();
+                            _arr[i].startTime = chooseTime.startTime;
+                            _arr[i].endTime = chooseTime.endTime;
+                            _arr[i].attr = attr[top];
+                            hasArrange = true;
+                        }
                     }
                 }
             }

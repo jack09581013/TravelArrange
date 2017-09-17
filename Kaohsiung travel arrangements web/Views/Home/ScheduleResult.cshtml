@@ -5,6 +5,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/components/rating.js"></script>
 }
 
+<div class="header" style=""></div>
+
 <div class="schedule">
     <div class="container text-center" style="width:100%;">
         <h3>行程總覽</h3>
@@ -17,72 +19,14 @@
                 </div>
                 <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="height:100%;">
                     <div class="schedule-detail" style="overflow:scroll">
-                        <select style="margin:20px 0 10px 0;font-size:12pt">
-                            <option value="">8/21</option>
-                            <option value="">8/22</option>
-                            <option value="">8/23</option>
-                            <option value="">8/24</option>
-                        </select>
-                        <div class="row text-center" style="width:100%;height:60px;margin-top:5px">
-                            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="height:100%;">
-                                <div style="width:50px;height:50px;border-radius:100%;border:4px solid #34495E;background-color:#FAF6C2;margin-left:40px">
-                                    <span style="line-height:45px;color:#34495E;">8:00</span>
-                                </div>
-                            </div>
-                            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8" style="height:100%;">
-                                <label for="our-popup"><span class="place-btn" style="font-weight:bold;line-height:50px;margin-left:-110px" onclick="lockScroll()">東海無名早餐</span></label>
-                            </div>
+                        <div class="dropdown" style="display:inline-block">
+                            <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                <span class="date">日期</span>
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu schedule-dates"></ul>                            
                         </div>
-                        <div class="row text-center" style="width:100%;height:60px;margin-top:5px">
-                            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="height:100%;">
-                                <div style="width:50px;height:50px;border-radius:100%;border:4px solid #34495E;background-color:#FAF6C2;margin-left:40px">
-                                    <span style="line-height:45px;color:#34495E;">9:00</span>
-                                </div>
-                            </div>
-                            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8" style="height:100%;">
-                                <label for="our-popup"><span class="place-btn" style="font-weight:bold;line-height:50px;margin-left:-110px" onclick="lockScroll()">東海大學</span></label>
-                            </div>
-                        </div>
-                        <div class="row text-center" style="width:100%;height:60px;margin-top:5px">
-                            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="height:100%;">
-                                <div style="width:50px;height:50px;border-radius:100%;border:4px solid #34495E;background-color:#FAF6C2;margin-left:40px">
-                                    <span style="line-height:45px;color:#34495E;">12:30</span>
-                                </div>
-                            </div>
-                            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8" style="height:100%;">
-                                <label for="our-popup"><span class="place-btn" style="font-weight:bold;line-height:50px;margin-left:-110px" onclick="lockScroll()">大魯閣壘球打擊場台中中科館</span></label>
-                            </div>
-                        </div>
-                        <div class="row text-center" style="width:100%;height:60px;margin-top:5px">
-                            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="height:100%;">
-                                <div style="width:50px;height:50px;border-radius:100%;border:4px solid #34495E;background-color:#FAF6C2;margin-left:40px">
-                                    <span style="line-height:45px;color:#34495E;">16:00</span>
-                                </div>
-                            </div>
-                            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8" style="height:100%;">
-                                <label for="our-popup"><span class="place-btn" style="font-weight:bold;line-height:50px;margin-left:-110px" onclick="lockScroll()">高美濕地</span></label>
-                            </div>
-                        </div>
-                        <div class="row text-center" style="width:100%;height:60px;margin-top:5px">
-                            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="height:100%;">
-                                <div style="width:50px;height:50px;border-radius:100%;border:4px solid #34495E;background-color:#FAF6C2;margin-left:40px">
-                                    <span style="line-height:45px;color:#34495E;">18:00</span>
-                                </div>
-                            </div>
-                            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8" style="height:100%;">
-                                <label for="our-popup"><span class="place-btn" style="font-weight:bold;line-height:50px;margin-left:-110px" onclick="lockScroll()">中友百貨</span></label>
-                            </div>
-                        </div>
-                        <div class="row text-center" style="width:100%;height:60px;margin-top:5px">
-                            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="height:100%;">
-                                <div style="width:50px;height:50px;border-radius:100%;border:4px solid #34495E;background-color:#FAF6C2;margin-left:40px">
-                                    <span style="line-height:45px;color:#34495E;">20:00</span>
-                                </div>
-                            </div>
-                            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8" style="height:100%;">
-                                <label for="our-popup"><span class="place-btn" style="font-weight:bold;line-height:50px;margin-left:-110px" onclick="lockScroll()">一中夜市</span></label>
-                            </div>
-                        </div>
+                        <div class="schedule-list"></div>
                     </div>
                 </div>
             </div>
@@ -195,6 +139,56 @@
        })
      ;
 </script>
+
+<script>
+    var arrangeData
+    $.ajax({
+        url: '/Home/arrangeAttractions',
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+            arrangeData = data
+            console.log('arrangeAttractions')
+            console.log(data)
+        }
+    })
+
+    $.ajax({
+        url: '/Home/arrangeDates',
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+            console.log('arrangeDates')
+            console.log(data)
+
+            var $scheduleDates = $('.schedule-dates').html('')
+            var $dropdown = $scheduleDates.parent()
+            for (var i = 0; i < data.length; ++i) {
+                $scheduleDates.append('<li style="cursor:pointer"><a data-index="' + i + '">' + data[i] + '</a></li>')
+            }
+
+            $scheduleDates.find('a').click(function () {
+                var index = $(this).data('index')
+                var $scheduleList = $('.schedule-list').html('')
+                $scheduleDates.siblings('button').find('.date').text($(this).text())
+
+                for (var i = 0; i < arrangeData[index].length; ++i) {
+                    var html = '<div class="row">'
+                    html += '<div class="col-md-4" style="white-space:nowrap">'
+                    html += '<div class="time-circle">' + arrangeData[index][i].startTime + '</div>'
+                    html += '<div class="time-circle-middle">~</div>'
+                    html += '<div class="time-circle">' + arrangeData[index][i].endTime + '</div>'
+                    html += '</div>'
+                    html += '<div class="col-md-8">'
+                    html += '<label for="our-popup"><span class="place-btn" onclick="lockScroll()">' + arrangeData[index][i].attr.name + '</span></label>'
+                    html += '</div></div>'
+                    $scheduleList.append(html)
+                }
+            })
+        }
+    })
+</script>
+
 <script>
       var map;
       function initMap() {

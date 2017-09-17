@@ -1,134 +1,232 @@
 ﻿
 @section HEAD{
     <title>安排行程</title>
-    <link rel="stylesheet" href="~/Content/plan_style.css" type="text/css">
+    <link rel="stylesheet" href="~/Content/plan_style2.css" type="text/css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/semantic.min.css">
     <link rel="stylesheet" href="~/Content/pikaday.css">
     <link rel="stylesheet" href="~/Content/site.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/semantic.min.js"></script>
+    <script src="~/Scripts/pikaday.js"></script>  
     <!-- 依需要參考已編譯外掛版本（如下），或各自獨立的外掛版本 -->
-    <script src="~/Scripts/pikaday.js"></script>   
+
 }
+<div class="header"></div>
 
-<script>
-    //拿取所有景點資料，用在<景點介紹>頁面
-    $.ajax({
-        url: '/Home/AttractionsInfo',
-        type: 'GET',
-        dataType: 'json',
-        success: function (data) {
-            console.log(data)
-        }
-    })
-
-    //輸入旅遊時段，得出開放時間匹配此時段的景點，用在<顯示安排結果>頁面
-    $.ajax({
-        url: '/Home/AttractionReplacement',
-        data: {
-            week: 3,
-            startTime: '08:00',
-            endTime: '12:00'
-        },
-        type: 'POST',
-        dataType: 'json',
-        success: function (data) {
-            console.log(data)
-        }
-    })
-</script>
-
-
-<div class="planning">
-    <div class="container" style="width:100%">
-        <div class="row text-center">
-            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                <img src="~/Image/number.png" alt="" style="height:600px;margin-left:100px">
+<div class="planning text-center">
+    <h3 style="font-size:20pt;color:#424242;">自動行程安排</h3>
+    <div class="ui container" style="width:80%;padding:0 0 70px 0;">
+        <div class="row text-center" style="margin-top:30px;">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="padding:0 4px 0 0;">
+                <label for="our-popup"><img src="~/Image/Step1.png" alt="" style="width:100%;" onclick="dialogue_change(1,'date')"></label>
             </div>
-            <form class="" action="index.html" method="post">
-
-                <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
-                    <div class="container" style=";height:150px;">
-                        <h4>輸入旅遊日期</h4>
-                        <input type="text" id="start-datepicker" style="height:45px;border-radius:5px;border: 1px solid #ccc;">
-                        <input type="text" id="end-datepicker" style="margin-left:50px;height:45px;border-radius:5px;border: 1px solid #ccc;">
-                    </div>
-                    <div class="ui container" style="height:150px;margin-top:30px;">
-                        <h4>選擇旅遊地點</h4>
-                        <select id="gender-select" name="gender" class="ui selection dropdown">
-                            <i class="dropdown icon"></i>
-                            <option value="台北">台北</option>
-                            <option value="高雄">高雄</option>
-                            <option value="台南">台南</option>
-                            <option value="台中">台中</option>
-                            <option value="桃園">桃園</option>
-                            <option value="宜蘭">宜蘭</option>
-                            <option value="新竹">新竹</option>
-                            <option value="嘉義">嘉義</option>
-                            <option value="彰化">彰化</option>
-                            <option value="基隆">基隆</option>
-                            <option value="花蓮">花蓮</option>
-                            <option value="南投">南投</option>
-                            <option value="苗栗">苗栗</option>
-                            <option value="屏東">屏東</option>
-                            <option value="台東">台東</option>
-                            <option value="雲林">雲林</option>
-                        </select>
-                    </div>
-                    <div class="ui container" style="height:150px;margin-top:10px;width:80%;">
-                        <h4 style="height:20px">景點興趣分數</h4>
-                        <span style="color:rgb(164,164,164);">1-10分，10分為最高</span>
-                        <div class="row text-center score" style="margin-top:10px;">
-                            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                                <span>休閒</span>
-                                <input type="number" name="" value="" min="1" max="10">
-                            </div>
-                            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                                <span>娛樂</span>
-                                <input type="number" name="" value="" min="1" max="10">
-                            </div>
-                            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                                <span>自然</span>
-                                <input type="number" name="" value="" min="1" max="10">
-                            </div>
-                            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                                <span>文化</span>
-                                <input type="number" name="" value="" min="1" max="10">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ui container" style="height:150px;margin-top:10px;width:30%;">
-                        <div class="row text-center" style="margin-top:10%;">
-                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                <button type="submit" class="btn btn-default" style="border-radius:5px;border: 1px solid #ccc;width:100px;height:45px" onclick="">確認</button>
-                            </div>
-                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                <button type="reset" class="btn btn-default" style="border-radius:5px;border: 1px solid #ccc;width:100px;height:45px" onclick="">重設</button>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </form>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="padding:0 0 0 4px;">
+                <label for="our-popup"><img src="~/Image/Step3.png" alt="" style="width:100%;" onclick="dialogue_change(2,'score')"></label>
+            </div>
+        </div>
+        <div class="row text-center" style="margin-top:2px;">
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding:0 0 0 0;"></div>
+            <div id="start-planning" class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="padding:0 0 0 0;">
+                <img src="~/Image/Step4.png" alt="" style="width:100%;">
+            </div>
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="padding:0 0 0 0;"></div>
         </div>
     </div>
 </div>
-        
+
+<span>
+    <input type="checkbox" id="our-popup" class="smoosh" />
+
+    <label for="our-popup" class="overlay" onclick="unLockScroll()"></label>
+
+    <div class="overlay-dialogue" id="dialogue">
+
+        <div class="set-date text-center" id="date" style="width:100%;display:none">
+            <div style="height:100px;width:100%;background-color:lightgray;padding-top:40px;">
+                <h2 style="font-size:20pt">輸入旅遊日期</h2>
+            </div>
+
+            <div style="width:100%;margin-top:40px">
+                <input type="text" id="start-datepicker" placeholder="(eg.)20/9/2017" style="height:45px;border-radius:5px;border: 1px solid #ccc;">
+                <input type="text" id="end-datepicker" placeholder="(eg.)20/9/2017" style="margin-left:50px;height:45px;border-radius:5px;border: 1px solid #ccc;">
+            </div>
+            <div style="width:50%;margin:auto">
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <label for="our-popup"><div class="button" onclick="setDate()">確認</div></label>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <label for="our-popup"><div class="button" onclick="unLockScroll()">取消</div></label>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="set-score text-center" id="score" style="width:100%;display:none">
+            <div style="height:100px;width:100%;background-color:lightgray;padding-top:40px;">
+                <h4 style="font-size:20pt;line-height:10px;">景點興趣分數</h4>
+                <span style="color:rgb(164,164,164);">1-10分，10分為最高</span>
+            </div>
+            <div class="container" style="width:100%">
+                <div class="row score" style="margin-top:40px">
+                    <div class="col-md-3">
+                        <span>人文</span>
+                    </div>
+                    <div class="col-md-3">
+                        <input id="hum_score" type="number" name="" value="" min="1" max="10">
+                    </div>
+                    <div class="col-md-3">
+                        <span>人造景觀</span>
+                    </div>
+                    <div class="col-md-3">
+                        <input id="art_score" type="number" name="" value="" min="1" max="10">
+                    </div>
+                </div>
+                <div class="row score" style="margin-top:40px">
+                    <div class="col-md-3">
+                        <span>休閒</span>                        
+                    </div>
+                    <div class="col-md-3">
+                        <input id="lei_score" type="number" name="" value="" min="1" max="10">
+                    </div>
+                    <div class="col-md-3">
+                        <span>自然</span>
+                    </div>
+                    <div class="col-md-3">
+                        <input id="nat_score" type="number" name="" value="" min="1" max="10">
+                    </div>
+                </div>
+                <div class="row score" style="margin-top:40px">
+                    <div class="col-md-3">
+                        <span>宗教</span>                       
+                    </div>
+                    <div class="col-md-3">
+                        <input id="rel_score" type="number" name="" value="" min="1" max="10">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="our-popup"><div class="button" onclick="setScore()">確認</div></label>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="our-popup"><div class="button" onclick="unLockScroll()">取消</div></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</span>
+
 <script>
-    var picker = new Pikaday(
-    {
-        field: document.getElementById('start-datepicker'),
-        firstDay: 1,
-        minDate: new Date(1995, 12, 31),
-        maxDate: new Date(),
-        yearRange: [2000,2020]
+
+    var data = {
+        startDate: '',
+        endDate: '',
+        startWeek: '',
+        days: '',
+        hum_score: '',
+        art_score: '',
+        lei_score: '',
+        nat_score: '',
+        rel_score: ''
+    }
+
+    function setDate(){
+      dayCount = Math.round((data.endDate - data.startDate) / (1000 * 60 * 60 * 24));
+      data.days = dayCount + 1;
+      console.log(data.days);
+      unLockScroll();
+    }
+
+    function setScore() {
+      data.hum_score = $('#hum_score').val()
+      data.art_score = $('#art_score').val()
+      data.lei_score = $('#lei_score').val()
+      data.nat_score = $('#nat_score').val()
+      data.rel_score = $('#rel_score').val()
+      unLockScroll();
+    }
+
+    function lockScroll() {
+        document.body.style.overflow = "hidden";
+    }
+
+    function unLockScroll() {
+        document.body.style.overflow = "auto";
+        document.getElementById("date").style.display = 'none';
+        document.getElementById("score").style.display = 'none';
+    }
+
+    function dialogue_change(step, id) {
+        var o = document.getElementById(id);
+        if (step == 1) {
+          o.style.display='';
+          document.getElementById("dialogue").style.height = "40%";
+          document.getElementById("dialogue").style.top = "20%";
+        } else if (step == 2) {
+          o.style.display='';
+          document.getElementById("dialogue").style.height = "35%";
+          document.getElementById("dialogue").style.top = "30%";
+        }
+        lockScroll();
+    }
+
+    var picker1 = new Pikaday({
+        field: $('#start-datepicker')[0],
+        minDate: new Date(),
+        onSelect: function (date) {
+            splitDate = ('' + date).split(' ')
+            data.startDate = date
+            data.startWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(splitDate[0]) + 1
+        }
     });
 
-    var picker = new Pikaday(
-    {
-        field: document.getElementById('end-datepicker'),
-        firstDay: 1,
-        minDate: new Date(1995, 12, 31),
-        maxDate: new Date(),
-        yearRange: [2000,2020]
+    var picker2 = new Pikaday({
+        field: $('#end-datepicker')[0],
+        minDate: new Date(),
+        onSelect: function (date) {
+            data.endDate = date
+        }
     });
 </script>
+
+<script>
+    
+    
+    $('#start-planning').click(function () {
+        /*data = {
+            startDate: '2017-9-17',
+            endDate: '2017-9-19',
+            startWeek: '7',
+            days: '3',
+            hum_score: '1',
+            art_score: '1',
+            lei_score: '1',
+            nat_score: '1',
+            rel_score: '1'
+        }*/
+
+        var alertStr = ''
+        if (data.startDate == '') alertStr += '「安排旅遊日期 - 開始時間」未設置完全\n'
+        if (data.endDate == '') alertStr += '「安排旅遊日期 - 結束時間」未設置完全\n'
+        if (data.hum_score == '') alertStr += '「個人興趣分數 - 人文」未設置完全\n'
+        if (data.art_score == '') alertStr += '「個人興趣分數 - 人造景觀」未設置完全\n'
+        if (data.lei_score == '') alertStr += '「個人興趣分數 - 休閒」未設置完全\n'
+        if (data.nat_score == '') alertStr += '「個人興趣分數 - 自然」未設置完全\n'
+        if (data.rel_score == '') alertStr += '「個人興趣分數 - 宗教」未設置完全\n'
+
+        if (alertStr != '') {
+            alert(alertStr)
+            return
+        }
+
+        data.startDate = data.startDate.getYear() + '-' + data.startDate.getMonth() + '-' + data.startDate.getDate()
+        data.endDate = data.endDate.getYear() + '-' + data.endDate.getMonth() + '-' + data.endDate.getDate()
+        console.log(data)
+        var queryString = ''
+        for (var attr in data)
+            queryString += attr + '=' + data[attr] + '&'
+        window.location.replace('/Home/ScheduleResult?' + queryString.substr(0, queryString.length - 1))
+              
+    })
+</script>
+
+
+
+
