@@ -46,8 +46,8 @@
             </div>
 
             <div style="width:100%;margin-top:40px">
-                <input type="text" id="start-datepicker" placeholder="(eg.)20/9/2017" style="height:45px;border-radius:5px;border: 1px solid #ccc;">
-                <input type="text" id="end-datepicker" placeholder="(eg.)20/9/2017" style="margin-left:50px;height:45px;border-radius:5px;border: 1px solid #ccc;">
+                <input type="text" id="start-datepicker" placeholder="開始時間" style="height:45px;border-radius:5px;border: 1px solid #ccc;">
+                <input type="text" id="end-datepicker" placeholder="結束時間" style="margin-left:50px;height:45px;border-radius:5px;border: 1px solid #ccc;">
             </div>
             <div style="width:50%;margin:auto">
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
@@ -130,7 +130,6 @@
     function setDate(){
       dayCount = Math.round((data.endDate - data.startDate) / (1000 * 60 * 60 * 24));
       data.days = dayCount + 1;
-      console.log(data.days);
       unLockScroll();
     }
 
@@ -156,13 +155,11 @@
     function dialogue_change(step, id) {
         var o = document.getElementById(id);
         if (step == 1) {
-          o.style.display='';
-          document.getElementById("dialogue").style.height = "40%";
-          document.getElementById("dialogue").style.top = "20%";
+            o.style.display = '';
+            $('#dialogue').css('height', '40%').css('top', '20%')
         } else if (step == 2) {
-          o.style.display='';
-          document.getElementById("dialogue").style.height = "35%";
-          document.getElementById("dialogue").style.top = "30%";
+            o.style.display = '';
+            $('#dialogue').css('height', '60%').css('top', '30%')
         }
         lockScroll();
     }
@@ -218,12 +215,11 @@
 
         data.startDate = data.startDate.getYear() + '-' + data.startDate.getMonth() + '-' + data.startDate.getDate()
         data.endDate = data.endDate.getYear() + '-' + data.endDate.getMonth() + '-' + data.endDate.getDate()
-        console.log(data)
+
         var queryString = ''
         for (var attr in data)
             queryString += attr + '=' + data[attr] + '&'
-        window.location.replace('/Home/ScheduleResult?' + queryString.substr(0, queryString.length - 1))
-              
+        window.location.replace('/Home/ScheduleResult?' + queryString.substr(0, queryString.length - 1))              
     })
 </script>
 

@@ -2,6 +2,10 @@
   background: rgba(220,220,220,0.3);
 }
 
+body *:not(.icon){
+  font-family:'Microsoft JhengHei' !important; 
+}
+
 .title, h1 {
   font-weight: bolder;
   color: white;
@@ -98,7 +102,7 @@
   margin: auto;
 }
 
-.choosing > .category > span{
+.choosing > .category > a{
   bottom: 3px;
   color: black;
   font-size:32px;

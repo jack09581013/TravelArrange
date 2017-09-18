@@ -13,12 +13,10 @@
         <div class="container" style="height:600px;width:85%;">
             <div class="row text-center" style="margin-top:10px;height:100%;">
                 <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8" style="height:100%;">
-                    <div class="schedule-detail">
-                        <div id="map"></div>
-                    </div>
+                    <div id="map" style="border:1px solid"></div>
                 </div>
                 <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="height:100%;">
-                    <div class="schedule-detail" style="overflow:scroll">
+                    <div class="schedule-detail">
                         <div class="dropdown" style="display:inline-block">
                             <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                                 <span class="date">日期</span>
@@ -32,7 +30,7 @@
             </div>
         </div>
     </div>
-    <div class="ui container" style="height:150px;margin-top:10px;width:30%;">
+    @*<div class="ui container" style="height:150px;margin-top:10px;width:30%;">
         <div class="row text-center" style="margin-top:10%;">
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                 <button type="submit" class="btn btn-default" style="border-radius:5px;border: 1px solid #ccc;width:100px;height:45px" onclick="">確認</button>
@@ -41,26 +39,18 @@
                 <button type="reset" class="btn btn-default" style="border-radius:5px;border: 1px solid #ccc;width:100px;height:45px" onclick="">重設</button>
             </div>
         </div>
-    </div>
+    </div>*@
 </div>
-<span>
-    <input type="checkbox" id="our-popup" class="smoosh" />
-    <!-- invisible; when checked, the popup opens -->
-    <label for="our-popup" class="overlay" onclick="unLockScroll()"></label>
-    <!-- the popup starts here -->
-    <div class="overlay-dialogue">
-        <!-- </div>
-        </span> -->
-        <img src="~/Image/popS.png" class="popIcon">
-        <div class="placeName">
-            <span>台北101 觀景台</span>
-        </div>
 
+<div id="attraction-detail" hidden>
+    <div class="overlay" onclick="closeDetail()"></div>
+
+    <div class="overlay-dialogue">
+        <img src="~/Image/popS.png" class="popIcon">
+        <div class="placeName"></div>
         <div class="popIntro">
-            <div class="popImage">
-                <img src="~/Image/s1011.jpg" alt="">
-            </div>
-            <div class="popInfo">
+            <div class="popImage"></div>
+            <div class="popInfo" style="margin-top:-90px;">
                 <div class="function">
                     <div class="rate">
                         <span style="font-size:14pt;color: rgba(115, 99, 120, 1);">評分：</span>
@@ -70,47 +60,43 @@
                             <i class="icon"></i>
                             <i class="icon"></i>
                             <i class="icon"></i>
+                            <i class="icon"></i>
+                            <i class="icon"></i>
+                            <i class="icon"></i>
+                            <i class="icon"></i>
+                            <i class="icon"></i>
                         </div>
-                    </div>
-                    <div class="collect">
-                        <span style="font-size:14pt;color: rgba(115, 99, 120, 1);">收藏：</span>
-                        <img src="~/Image/unlike.png" alt="" id="like" onclick="likeOnClick()">
                     </div>
                 </div>
                 <h3>資訊</h3>
                 <hr>
                 <p>
                     <span>電話：</span>
-                    <span>02-8101-7777</span>
+                    <span class="phone"></span>
                     <br>
                     <span>地址：</span>
-                    <span>台灣臺北市信義區信義路五段7號</span>
+                    <span class="address"></span>
                     <br>
-                    <span>網址：</span>
-                    <span><a href="http://www.taipei-101.com.tw/">http://www.taipei-101.com.tw/</a></span>
+                    <span>分類：</span>
+                    <span class="category"></span>
                 </p>
             </div>
             <div class="popDetail">
                 <h3>簡介</h3>
                 <hr>
-                <p>
-                    Taipei101大樓位在台北市信義區，是台北市的著名地標，共有地上101層及地下5層，
-                    總高度達到508公尺，目前為世界第一高樓。Taipei101大樓主要共分為購物中心、辦公大樓
-                    及景觀台，是一棟集合時尚、觀光、商業及文化的大樓，內部有多家銀行及證券金融中心服務於
-                    此，並有多家著名大型企業進駐，購物中心內則有時尚服飾、精品、化妝品、書店、餐廳及美食
-                    街等店家，88、89及91樓則為室內與戶外觀景台，民眾可購票前往俯瞰台北市，享受居高臨下
-                    的視覺饗宴。Taipei101大樓近年來更連續在跨年時刻施放大型煙火及燈光效果，是台北市跨
-                    年活動中主要的重頭戲。
-                </p>
+                <p class="detail"></p>
             </div>
             <div class="close">
-                <label for="our-popup">
-                    <img src="~/Image/close.png" title="關閉" alt="關閉" onclick="unLockScroll()">
-                </label>
+                <div style="width:30px;height:30px;margin:auto;">
+                    <label onclick="closeDetail()" style="cursor:pointer">
+                        <img src="~/Image/close.png" title="關閉" alt="關閉" />
+                    </label>
+                </div>
             </div>
         </div>
     </div>
-</span>
+</div>
+
 <script>
      function lockScroll() {
          document.body.style.overflow = "hidden";
@@ -141,6 +127,22 @@
 </script>
 
 <script>
+
+    /*//輸入旅遊時段，得出開放時間匹配此時段的景點，用在<顯示安排結果>頁面
+    $.ajax({
+        url: '/Home/AttractionReplacement',
+        data: {
+            week: 3,
+            startTime: '08:00',
+            endTime: '12:00'
+        },
+        type: 'POST',
+        dataType: 'json',
+        success: function (data) {
+            console.log(data)
+        }
+    })*/
+
     var arrangeData
     $.ajax({
         url: '/Home/arrangeAttractions',
@@ -148,8 +150,6 @@
         dataType: 'json',
         success: function (data) {
             arrangeData = data
-            console.log('arrangeAttractions')
-            console.log(data)
         }
     })
 
@@ -158,9 +158,6 @@
         type: 'GET',
         dataType: 'json',
         success: function (data) {
-            console.log('arrangeDates')
-            console.log(data)
-
             var $scheduleDates = $('.schedule-dates').html('')
             var $dropdown = $scheduleDates.parent()
             for (var i = 0; i < data.length; ++i) {
@@ -173,20 +170,61 @@
                 $scheduleDates.siblings('button').find('.date').text($(this).text())
 
                 for (var i = 0; i < arrangeData[index].length; ++i) {
-                    var html = '<div class="row">'
+                    var html = '<div class="row attraction-intro" data-id="' + arrangeData[index][i].attr.id + '">'
                     html += '<div class="col-md-4" style="white-space:nowrap">'
                     html += '<div class="time-circle">' + arrangeData[index][i].startTime + '</div>'
                     html += '<div class="time-circle-middle">~</div>'
                     html += '<div class="time-circle">' + arrangeData[index][i].endTime + '</div>'
                     html += '</div>'
-                    html += '<div class="col-md-8">'
-                    html += '<label for="our-popup"><span class="place-btn" onclick="lockScroll()">' + arrangeData[index][i].attr.name + '</span></label>'
+                    html += '<div class="col-md-8" style="white-space:nowrap;text-align:center">'
+                    html += '<label for="our-popup"><span class="place-btn" onclick="popupDetail($(this))">' + arrangeData[index][i].attr.name + '</span></label>'
                     html += '</div></div>'
+                    html += '<hr/>'
                     $scheduleList.append(html)
                 }
             })
         }
     })
+
+    var attrData
+    $.ajax({
+        url: '/Home/AttractionsInfo',
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+            attrData = data
+        }
+    })
+
+    function findAttr(id) {
+        for (var i = 0; i < attrData.length; ++i) {
+            if (id == attrData[i][0])
+                return attrData[i]
+        }
+        return null
+    }
+
+    function popupDetail(button) {
+        attrId = button.parents('.attraction-intro').data('id')        
+        attr = findAttr(attrId)
+        $detail = $('#attraction-detail')
+        $detail.find('.placeName').html('<span>' + attr[1] + '</span>')
+        $detail.find('.popImage').html('<img src="/Image/pictures/' + attrId + '.jpg"/>')
+        $detail.find('.phone').html(attr[4])
+        $detail.find('.address').html(attr[5])
+        $detail.find('.category').html(attr[11])
+        $detail.find('.detail').html('<span>　　</span>' + attr[3])
+        $detail.show()
+
+        $('.ui.rating').rating({
+            initialRating: Math.round(parseFloat(attr[12]) / 0.2),
+            maxRating: 10
+        })
+    }
+
+    function closeDetail() {
+        $('#attraction-detail').hide()
+    }
 </script>
 
 <script>
@@ -196,7 +234,7 @@
         map = new google.maps.Map(document.getElementById('map'), {
           zoom: 8,
           center: location
-        });
+        })
       }
       // AIzaSyDLjh7h3mDZjw7aC8w0NajWoRgThCAf1mE
 </script>

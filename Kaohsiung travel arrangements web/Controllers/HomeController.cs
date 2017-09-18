@@ -11,6 +11,7 @@ namespace Kaohsiung_travel_arrangements_web.Controllers
     public class HomeController : Controller
     {
         private string root = "C:/Users/USER/Documents/Visual Studio 2015/Projects/TravelArrange/Kaohsiung travel arrangements web";
+
         // GET: Home
         public ActionResult SchedulePlanning()
         {            
@@ -19,11 +20,10 @@ namespace Kaohsiung_travel_arrangements_web.Controllers
 
         /*
          * 未完成：
-         * - 景點排序
-         * - 分數依興趣調整
          * - Google Map標示
          * - 景點介紹：景點依照地區分類
          * - 安排行程：顯示已經完成之參數
+         * - 顯示結果：更換遊玩景點
          */
 
         /*
@@ -52,11 +52,6 @@ namespace Kaohsiung_travel_arrangements_web.Controllers
         {
             int startWeek = (int)Session["startWeek"];
             int days = (int)Session["days"];
-            int hum_score = (int)Session["hum_score"];
-            int art_score = (int)Session["art_score"];
-            int lei_score = (int)Session["lei_score"];
-            int nat_score = (int)Session["nat_score"];
-            int rel_score = (int)Session["rel_score"];
 
             List<string[]> data = new List<string[]>();
             List<Calendar> cals = JsonConvert.DeserializeObject<List<Calendar>>(System.IO.File.ReadAllText(root + "/App_Data/attractions-opentime.json"));
@@ -76,16 +71,16 @@ namespace Kaohsiung_travel_arrangements_web.Controllers
                 attr.name = data[i][1];
                 attr.lon = Convert.ToDouble(data[i][7]);
                 attr.lat = Convert.ToDouble(data[i][8]);
-                attr.score = Convert.ToDouble(data[i][10]);
+                attr.score = Convert.ToDouble(data[i][12]) * (int)Session[categoryArgsName(data[i][11])];
                 attrs[i] = attr;
             }
 
             Array.Sort(attrs);
-
+            Random rand = new Random();
             for (int i = 0, week = startWeek; i < travelTimes.Length; ++i, ++week)
             {
                 if (week > 7) week -= 7;
-                 Random rand = new Random();
+                
                 int timePeriodCount = rand.Next(3, 5);
                 travelTimes[i] = new TravelTime[timePeriodCount];
 
@@ -110,6 +105,16 @@ namespace Kaohsiung_travel_arrangements_web.Controllers
             return JsonConvert.SerializeObject(arrs);
         }
 
+        private string categoryArgsName(string category)
+        {
+            if (category == "人文") return "hum_score";
+            if (category == "人造景觀") return "art_score";
+            if (category == "休閒") return "lei_score";
+            if (category == "自然") return "nat_score";
+            if (category == "宗教") return "rel_score";
+            return "";
+        }
+
         public string arrangeDates()
         {
             string startDate = (string)Session["startDate"];
@@ -129,11 +134,6 @@ namespace Kaohsiung_travel_arrangements_web.Controllers
         }
 
         public ActionResult AttractionIntroduction()
-        {
-            return View();
-        }
-
-        public ActionResult Test()
         {
             return View();
         }
