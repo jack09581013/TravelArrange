@@ -11,7 +11,7 @@ namespace Kaohsiung_travel_arrangements_web.Controllers
     public class HomeController : Controller
     {
         private string root = "C:/Users/USER/Documents/Visual Studio 2015/Projects/TravelArrange/Kaohsiung travel arrangements web";
-
+        
         // GET: Home
         public ActionResult SchedulePlanning()
         {            
@@ -54,8 +54,8 @@ namespace Kaohsiung_travel_arrangements_web.Controllers
             int days = (int)Session["days"];
 
             List<string[]> data = new List<string[]>();
-            List<Calendar> cals = JsonConvert.DeserializeObject<List<Calendar>>(System.IO.File.ReadAllText(root + "/App_Data/attractions-opentime.json"));
-            string[] source = System.IO.File.ReadAllLines(root + "/App_Data/attractions-all-information.csv");
+            List<Calendar> cals = JsonConvert.DeserializeObject<List<Calendar>>(System.IO.File.ReadAllText(Server.MapPath("~/App_Data/attractions-opentime.json")));
+            string[] source = System.IO.File.ReadAllLines(Server.MapPath("~/App_Data/attractions-all-information.csv"));
             for (int i = 1; i < source.Length; ++i)
                 data.Add(source[i].Split(new char[] { ',' }));
             Attraction[] attrs = new Attraction[data.Count];
@@ -141,7 +141,7 @@ namespace Kaohsiung_travel_arrangements_web.Controllers
         public string AttractionsInfo()
         {
             List<string[]> data = new List<string[]>();
-            string[] source = System.IO.File.ReadAllLines(root + "/App_Data/attractions-all-information.csv");
+            string[] source = System.IO.File.ReadAllLines(Server.MapPath("~/App_Data/attractions-all-information.csv"));
             for(int i=1; i<source.Length; ++i)
             {
                 data.Add(source[i].Split(new char[] {','}));
@@ -155,13 +155,13 @@ namespace Kaohsiung_travel_arrangements_web.Controllers
         {
             List<Attraction> attrs = new List<Attraction>();
             List<string[]> data = new List<string[]>();
-            string[] source = System.IO.File.ReadAllLines(root + "/App_Data/attractions-all-information.csv");
+            string[] source = System.IO.File.ReadAllLines(Server.MapPath("~/App_Data/attractions-all-information.csv"));
             for (int i = 1; i < source.Length; ++i)
             {
                 data.Add(source[i].Split(new char[] { ',' }));
             }
 
-            List<Calendar> cals = JsonConvert.DeserializeObject<List<Calendar>>(System.IO.File.ReadAllText(root + "/App_Data/attractions-opentime.json"));
+            List<Calendar> cals = JsonConvert.DeserializeObject<List<Calendar>>(System.IO.File.ReadAllText(Server.MapPath("~/App_Data/attractions-opentime.json")));
             for(int i=0; i<data.Count; ++i)
             {
                 if (!timeIntersection(cals[i], week, startTime, endTime)) continue;
