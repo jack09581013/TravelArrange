@@ -1,0 +1,19 @@
+﻿.messages{            
+    position:fixed;
+    font-family:'Microsoft JhengHei';
+    font-size:2em;
+    line-height:2em;
+    color:white;
+    bottom:0;
+    width:100%;
+}
+
+.message{
+    height:2em;
+    width:100%;
+    display: none; /*先隱藏Message*/
+}
+
+.message span{
+    margin-left:0.7em;
+}

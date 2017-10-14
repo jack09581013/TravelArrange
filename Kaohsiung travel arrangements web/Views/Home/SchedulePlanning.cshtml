@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="~/Content/site.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/semantic.min.js"></script>
     <script src="~/Scripts/pikaday.js"></script>  
+    <link href="~/Content/message.css" rel="stylesheet" />
+    <script src="~/Scripts/message.js"></script>
     <!-- 依需要參考已編譯外掛版本（如下），或各自獨立的外掛版本 -->
 
 }
@@ -32,6 +34,9 @@
         </div>
     </div>
 </div>
+
+@*顯示成功或失敗之訊息*@
+<div class="messages"></div>
 
 <span>
     <input type="checkbox" id="our-popup" class="smoosh" />
@@ -199,17 +204,37 @@
             rel_score: '1'
         }*/
 
-        var alertStr = ''
-        if (data.startDate == '') alertStr += '「安排旅遊日期 - 開始時間」未設置完全\n'
-        if (data.endDate == '') alertStr += '「安排旅遊日期 - 結束時間」未設置完全\n'
-        if (data.hum_score == '') alertStr += '「個人興趣分數 - 人文」未設置完全\n'
-        if (data.art_score == '') alertStr += '「個人興趣分數 - 人造景觀」未設置完全\n'
-        if (data.lei_score == '') alertStr += '「個人興趣分數 - 休閒」未設置完全\n'
-        if (data.nat_score == '') alertStr += '「個人興趣分數 - 自然」未設置完全\n'
-        if (data.rel_score == '') alertStr += '「個人興趣分數 - 宗教」未設置完全\n'
+        var error = false
+        if (data.startDate == '') {
+            errorShow('「安排旅遊日期 - 開始時間」未設置完全')
+            error = true
+        }
+        if (data.endDate == '') {
+            errorShow('「安排旅遊日期 - 結束時間」未設置完全')
+            error = true
+        }
+        if (data.hum_score == '') {
+            errorShow('「個人興趣分數 - 人文」未設置完全')
+            error = true
+        }
+        if (data.art_score == '') {
+            errorShow('「個人興趣分數 - 人造景觀」未設置完全')
+            error = true
+        }
+        if (data.lei_score == '') {
+            errorShow('「個人興趣分數 - 休閒」未設置完全')
+            error = true
+        }
+        if (data.nat_score == '') {
+            errorShow('「個人興趣分數 - 自然」未設置完全')
+            error = true
+        }
+        if (data.rel_score == '') {
+            errorShow('「個人興趣分數 - 宗教」未設置完全')
+            error = true
+        }
 
-        if (alertStr != '') {
-            alert(alertStr)
+        if (error) {
             return
         }
 

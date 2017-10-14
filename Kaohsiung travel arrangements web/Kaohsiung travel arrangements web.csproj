@@ -122,6 +122,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\attractions-introduction-2.css" />
+    <Content Include="Content\message.css" />
     <Content Include="Image\category-icon\人文.png" />
     <Content Include="Image\category-icon\人造景觀.png" />
     <Content Include="Image\category-icon\休閒.png" />
@@ -490,6 +491,7 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\message.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\pikaday.js" />
