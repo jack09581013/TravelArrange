@@ -75,6 +75,9 @@
                     <br>
                     <span>分類：</span>
                     <span class="category"></span>
+                    <br>
+                    <span>營業時間：</span>
+                    <span class="opentime"></span>
                 </p>
             </div>
             <div class="popDetail">
@@ -97,21 +100,51 @@
 
 <script>
     //拿取所有景點資料，用在<景點介紹>頁面
-    var attrData
+    var attrData = []
     $.ajax({
         url: '/Home/AttractionsInfo',
         type: 'GET',
         dataType: 'json',
         success: function (data) {
-            attrData = data
+            for (var i = 0; i < data.length; ++i) {
+                //id,name,zone,description,phone,address,photo,longitude,latitude,hot_score,pats_score,category,merge_score
+                attrData.push({
+                    id: data[i][0],
+                    name: data[i][1],
+                    zone: data[i][2],
+                    description: data[i][3],
+                    phone: data[i][4],
+                    address: data[i][5],
+                    photo: data[i][6],
+                    longitude: parseFloat([i][7]),
+                    latitude: parseFloat(data[i][8]),
+                    hotScore: parseFloat(data[i][9]),
+                    patsScore: parseFloat(data[i][10]),
+                    category: data[i][11],
+                    mergeScore: parseFloat(data[i][12]),
+                    rating: Math.round((data[i][12]) / 0.2)
+                })
+            }
+
+            $.ajax({
+                url: '/Home/AttractionsCal',
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    for (var i = 0; i < data.length; ++i) {
+                        attrData[i].calendar = data[i]
+                    }
+                }
+            })
+
             var display = []
             var category = ['人文', '人造景觀', '休閒', '自然', '宗教']
             
             for (var i = 0; i < category.length; ++i) {
                 display[i] = []
-                for (var j = 0; j < data.length; ++j) {
-                    if (data[j][11] == category[i]) {
-                        display[i].push(data[j])
+                for (var j = 0; j < attrData.length; ++j) {
+                    if (attrData[j].category == category[i]) {
+                        display[i].push(attrData[j])
                     }
                 }
             }
@@ -121,20 +154,20 @@
                 for (var j = 0; j < display[i].length; ++j) {
                     var html
                     if (first) {
-                        html = '<div id="' + category[i] + '" class="col-sm-4 attraction-intro" data-id="' + display[i][j][0] + '">'
+                        html = '<div id="' + category[i] + '" class="col-sm-4 attraction-intro" data-id="' + display[i][j].id + '">'
                         first = false
                     }
                     else {
-                        html = '<div class="col-sm-4 attraction-intro" data-id="' + display[i][j][0] + '">'
+                        html = '<div class="col-sm-4 attraction-intro" data-id="' + display[i][j].id + '">'
                     }
                     
-                    html += '<div class="photo"><img src="/Image/pictures/' + display[i][j][0] + '.jpg" alt=""></div>'
+                    html += '<div class="photo"><img src="/Image/pictures/' + display[i][j].id + '.jpg" alt=""></div>'
                     html += '<div class="intro">'
-                    html += '<img src="/Image/category-icon/' + display[i][j][11] + '.png">'
+                    html += '<img src="/Image/category-icon/' + display[i][j].category + '.png">'
                     html += '<div class="detail">'
-                    html += '<h2>' + display[i][j][1] + '</h2>'
+                    html += '<h2>' + display[i][j].name + '</h2>'
                     html += '<hr/>'
-                    html += '<p>高雄市 ' + display[i][j][2] + '</p>'
+                    html += '<p>高雄市 ' + display[i][j].zone + '</p>'
                     html += '</div>'
                     html += '<div class="button" onclick="popupDetail($(this))">了解更多</div>'
                     //html += '<label for="our-popup"><div class="button" onclick="lockScroll()"><b>了解更多</b></div></label>'
@@ -146,28 +179,63 @@
         }
     })
 
+    //以ID搜尋景點資料
     function findAttr(id) {
         for (var i = 0; i < attrData.length; ++i) {
-            if(id == attrData[i][0])
+            if (id == attrData[i].id)
                 return attrData[i]
         }
         return null
     }
 
+    //顯示景點詳細資料
     function popupDetail(button) {
         attrId = button.parents('.attraction-intro').data('id')
         attr = findAttr(attrId)
         $detail = $('#attraction-detail')
-        $detail.find('.placeName').html('<span>' + attr[1] + '</span>')
+        $detail.find('.placeName').html('<span>' + attr.name + '</span>')
         $detail.find('.popImage').html('<img src="/Image/pictures/' + attrId + '.jpg"/>')
-        $detail.find('.phone').html(attr[4])
-        $detail.find('.address').html(attr[5])
-        $detail.find('.detail').html('<span>　　</span>' + attr[3])
-        $detail.find('.category').html(attr[11])
+        $detail.find('.phone').html(attr.phone)
+        $detail.find('.address').html(attr.address)
+        $detail.find('.category').html(attr.category)
+        $detail.find('.detail').html('<span></span>' + attr.description)
+
+        console.log(attr)
+        if (attr.calendar.attribute == 'all') {
+            $detail.find('.opentime').html('全天候開放')
+        }
+        else if (attr.calendar.attribute == 'part') {
+            var weeks = '一二三四五六日'
+            var opentime = ''
+            for (var i = 0; i < 7; ++i) {
+                opentime += '<br>　　星期' + weeks[i] + '： '
+                var sche = attr.calendar.calendar[(i + 1) + '']
+
+                if (sche.length == 0) {
+                    opentime += '無'
+                }
+                else {
+                    for (var j = 0; j < sche.length; ++j) {
+                        if (j == 0) {
+                            opentime += sche[j][0] + '-' + sche[j][1]
+                        }
+                        else {
+                            opentime += ',' + sche[j][0] + '-' + sche[j][1]
+                        }
+                    }
+                }
+                
+            }
+            $detail.find('.opentime').html(opentime)
+        }
+        else if (attr.calendar.attribute == 'none') {
+            $detail.find('.opentime').html('無資料')
+        }
+
         $detail.show()
 
         $('.ui.rating').rating({
-            initialRating: Math.round(parseFloat(attr[12]) / 0.2),
+            initialRating: attr.rating,
             maxRating: 10
         })
     }

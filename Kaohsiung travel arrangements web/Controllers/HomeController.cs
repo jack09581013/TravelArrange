@@ -48,7 +48,7 @@ namespace Kaohsiung_travel_arrangements_web.Controllers
             return View();
         }
 
-        public string arrangeAttractions()
+        public string ArrangeAttractions()
         {
             int startWeek = (int)Session["startWeek"];
             int days = (int)Session["days"];
@@ -71,7 +71,7 @@ namespace Kaohsiung_travel_arrangements_web.Controllers
                 attr.name = data[i][1];
                 attr.lon = Convert.ToDouble(data[i][7]);
                 attr.lat = Convert.ToDouble(data[i][8]);
-                attr.score = Convert.ToDouble(data[i][12]) * (int)Session[categoryArgsName(data[i][11])];
+                attr.score = Convert.ToDouble(data[i][12]) * (int)Session[CategoryArgsName(data[i][11])];
                 attrs[i] = attr;
             }
 
@@ -105,7 +105,7 @@ namespace Kaohsiung_travel_arrangements_web.Controllers
             return JsonConvert.SerializeObject(arrs);
         }
 
-        private string categoryArgsName(string category)
+        private string CategoryArgsName(string category)
         {
             if (category == "人文") return "hum_score";
             if (category == "人造景觀") return "art_score";
@@ -115,7 +115,7 @@ namespace Kaohsiung_travel_arrangements_web.Controllers
             return "";
         }
 
-        public string arrangeDates()
+        public string ArrangeDates()
         {
             string startDate = (string)Session["startDate"];
             string endDate = (string)Session["endDate"];
@@ -150,6 +150,11 @@ namespace Kaohsiung_travel_arrangements_web.Controllers
             return JsonConvert.SerializeObject(data);
         }
 
+        public string AttractionsCal()
+        {
+            return System.IO.File.ReadAllText(Server.MapPath("~/App_Data/attractions-opentime.json"));
+        }
+
         [HttpPost]
         public string AttractionReplacement(int week, string startTime, string endTime)
         {
@@ -164,14 +169,14 @@ namespace Kaohsiung_travel_arrangements_web.Controllers
             List<Calendar> cals = JsonConvert.DeserializeObject<List<Calendar>>(System.IO.File.ReadAllText(Server.MapPath("~/App_Data/attractions-opentime.json")));
             for(int i=0; i<data.Count; ++i)
             {
-                if (!timeIntersection(cals[i], week, startTime, endTime)) continue;
+                if (!TimeIntersection(cals[i], week, startTime, endTime)) continue;
                 string[] line = data[i];
                 Attraction attr = new Attraction();
                 attr.id = line[0];
                 attr.name = line[1];
-                attr.lon = Convert.ToDouble(line[6]);
-                attr.lat = Convert.ToDouble(line[7]);
-                attr.score = Convert.ToDouble(line[9]);
+                attr.lon = Convert.ToDouble(line[7]);
+                attr.lat = Convert.ToDouble(line[8]);
+                attr.score = Convert.ToDouble(line[12]) * (int)Session[CategoryArgsName(line[11])];
                 attr.cal = cals[i];
 
                 attrs.Add(attr);
@@ -179,7 +184,7 @@ namespace Kaohsiung_travel_arrangements_web.Controllers
             return JsonConvert.SerializeObject(attrs);
         }
 
-        private bool timeIntersection(Calendar cal, int week, string startTime, string endTime)
+        private bool TimeIntersection(Calendar cal, int week, string startTime, string endTime)
         {
             List<string[]> opentimes = cal.calendar[week];
             if (cal.attribute == "all") return true;
