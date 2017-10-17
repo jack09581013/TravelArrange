@@ -1,7 +1,7 @@
 ﻿
 @section HEAD{
     <title>景點介紹</title>
-    <link href="~/Content/attractions-introduction-2.css" rel="stylesheet" />
+    <link href="~/Content/attractions-introduction.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/components/rating.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/components/rating.js"></script>
 }
@@ -9,26 +9,27 @@
 <div class="header">
     <h1 class="title">景點介紹</h1>
 </div>
+
 <div class="choosing">
-    <div class="category">
+    <div class="category" onclick="displayAttr(0)">
         <img src="~/Image/category-icon/人文.png">
-        <a href="#人文">人文</a>
+        <a>人文</a>
     </div>
-    <div class="category">
+    <div class="category" onclick="displayAttr(1)">
         <img src="~/Image/category-icon/人造景觀.png">
-        <a href="#人造景觀">人造景觀</a>
+        <a>人造景觀</a>
     </div>
-    <div class="category">
+    <div class="category" onclick="displayAttr(2)">
         <img src="~/Image/category-icon/休閒.png">
-        <a href="#休閒">休閒</a>
+        <a>休閒</a>
     </div>
-    <div class="category">
+    <div class="category" onclick="displayAttr(3)">
         <img src="~/Image/category-icon/自然.png">
-        <a href="#自然">自然</a>
+        <a>自然</a>
     </div>
-    <div class="category">
+    <div class="category" onclick="displayAttr(4)">
         <img src="~/Image/category-icon/宗教.png">
-        <a href="#宗教">宗教</a>
+        <a>宗教</a>
     </div>
 </div>
 
@@ -101,6 +102,7 @@
 <script>
     //拿取所有景點資料，用在<景點介紹>頁面
     var attrData = []
+    var display = []
     $.ajax({
         url: '/Home/AttractionsInfo',
         type: 'GET',
@@ -136,8 +138,7 @@
                     }
                 }
             })
-
-            var display = []
+            
             var category = ['人文', '人造景觀', '休閒', '自然', '宗教']
             
             for (var i = 0; i < category.length; ++i) {
@@ -148,36 +149,45 @@
                     }
                 }
             }
-
-            var first = true
-            for (var i = 0; i < display.length; ++i) {
-                for (var j = 0; j < display[i].length; ++j) {
-                    var html
-                    if (first) {
-                        html = '<div id="' + category[i] + '" class="col-sm-4 attraction-intro" data-id="' + display[i][j].id + '">'
-                        first = false
-                    }
-                    else {
-                        html = '<div class="col-sm-4 attraction-intro" data-id="' + display[i][j].id + '">'
-                    }
-                    
-                    html += '<div class="photo"><img src="/Image/pictures/' + display[i][j].id + '.jpg" alt=""></div>'
-                    html += '<div class="intro">'
-                    html += '<img src="/Image/category-icon/' + display[i][j].category + '.png">'
-                    html += '<div class="detail">'
-                    html += '<h2>' + display[i][j].name + '</h2>'
-                    html += '<hr/>'
-                    html += '<p>高雄市 ' + display[i][j].zone + '</p>'
-                    html += '</div>'
-                    html += '<div class="button" onclick="popupDetail($(this))">了解更多</div>'
-                    //html += '<label for="our-popup"><div class="button" onclick="lockScroll()"><b>了解更多</b></div></label>'
-                    html += '</div></div>'
-                    $('#attractions').append(html)
-                }
-                first = true
-            }
+            displayAttr(0)
         }
     })
+
+    //列出特定種類之景點
+    function displayAttr(category) {
+
+        var category_type = ['人文', '人造景觀', '休閒', '自然', '宗教']
+        for (var k = 0; k < category_type.length; ++k) {
+            $('.attraction-intro').remove()
+        }
+
+        var first = true
+        i = category
+        for (var j = 0; j < display[i].length; ++j) {
+            var html
+            if (first) {
+                html = '<div id="' + category[i] + '" class="col-sm-4 attraction-intro" data-id="' + display[i][j].id + '">'
+                first = false
+            }
+            else {
+                html = '<div class="col-sm-4 attraction-intro" data-id="' + display[i][j].id + '">'
+            }
+
+            html += '<div class="photo"><img src="/Image/pictures/' + display[i][j].id + '.jpg" alt=""></div>'
+            html += '<div class="intro">'
+            html += '<img src="/Image/category-icon/' + display[i][j].category + '.png">'
+            html += '<div class="detail">'
+            html += '<h2>' + display[i][j].name + '</h2>'
+            html += '<hr/>'
+            html += '<p>高雄市 ' + display[i][j].zone + '</p>'
+            html += '</div>'
+            html += '<div class="button" onclick="popupDetail($(this))">了解更多</div>'
+            //html += '<label for="our-popup"><div class="button" onclick="lockScroll()"><b>了解更多</b></div></label>'
+            html += '</div></div>'
+            $('#attractions').append(html)
+        }
+        first = true        
+    }
 
     //以ID搜尋景點資料
     function findAttr(id) {

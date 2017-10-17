@@ -16,6 +16,19 @@
 
 <div class="planning text-center">
     <h3 style="font-size:20pt;color:#424242;">自動行程安排</h3>
+    <div style="width:40%;margin:auto;">
+        <div class="ui container" style="width:100%;">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <img id="date-finish" src="~/Image/date2.png" alt="" style="height:100px;margin:auto;">
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <img id="score-finish" src="~/Image/score2.png" alt="" style="height:100px;margin:auto;">
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <img id="all-finish" src="~/Image/finish2.png" alt="" style="height:100px;margin:auto;">
+            </div>
+        </div>
+    </div>
     <div class="ui container" style="width:80%;padding:0 0 70px 0;">
         <div class="row text-center" style="margin-top:30px;">
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="padding:0 4px 0 0;">
@@ -132,19 +145,39 @@
         rel_score: ''
     }
 
+    //確認目前參數設置之進度
+    function planningCheck() {
+        var all_finish = 0
+        if (data.startDate != '' && data.endDate != '') {
+            $("#date-finish").attr("src", "/Image/date1.png");
+            all_finish++
+        }
+
+        if (data.hum_score != '' && data.art_score != '' && data.lei_score != '' && data.nat_score != '' && data.rel_score != '') {
+            $("#score-finish").attr("src", "/Image/score1.png");
+            all_finish++
+        }
+
+        if (all_finish == 2) {
+            $("#all-finish").attr("src", "/Image/finish1.png");
+        }
+    }
+
     function setDate(){
-      dayCount = Math.round((data.endDate - data.startDate) / (1000 * 60 * 60 * 24));
-      data.days = dayCount + 1;
-      unLockScroll();
+        dayCount = Math.round((data.endDate - data.startDate) / (1000 * 60 * 60 * 24));
+        data.days = dayCount + 1;
+        unLockScroll()
+        planningCheck()
     }
 
     function setScore() {
-      data.hum_score = $('#hum_score').val()
-      data.art_score = $('#art_score').val()
-      data.lei_score = $('#lei_score').val()
-      data.nat_score = $('#nat_score').val()
-      data.rel_score = $('#rel_score').val()
-      unLockScroll();
+        data.hum_score = $('#hum_score').val()
+        data.art_score = $('#art_score').val()
+        data.lei_score = $('#lei_score').val()
+        data.nat_score = $('#nat_score').val()
+        data.rel_score = $('#rel_score').val()
+        unLockScroll()
+        planningCheck()
     }
 
     function lockScroll() {

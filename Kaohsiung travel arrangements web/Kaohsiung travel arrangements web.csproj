@@ -128,6 +128,10 @@
     <Content Include="Image\category-icon\休閒.png" />
     <Content Include="Image\category-icon\宗教.png" />
     <Content Include="Image\category-icon\自然.png" />
+    <Content Include="Image\date1.png" />
+    <Content Include="Image\date2.png" />
+    <Content Include="Image\finish1.png" />
+    <Content Include="Image\finish2.png" />
     <Content Include="Image\pictures\C1_397000000A_000009.jpg" />
     <Content Include="Image\pictures\C1_397000000A_000010.jpg" />
     <Content Include="Image\pictures\C1_397000000A_000011.jpg" />
@@ -473,6 +477,8 @@
     <Content Include="Image\s8.jpg" />
     <Content Include="Image\s9.jpg" />
     <Content Include="Image\scenery.png" />
+    <Content Include="Image\score1.png" />
+    <Content Include="Image\score2.png" />
     <Content Include="Image\sh1.jpg" />
     <Content Include="Image\sh2.JPG" />
     <Content Include="Image\sh3.jpg" />
